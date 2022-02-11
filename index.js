@@ -2,6 +2,29 @@ const input =document.querySelector("#dateinput");
 const btnShow=document.querySelector("#btnShow");
 const output=document.querySelector("#output");
 
+
+function clickHandler(){
+    var inputDate=input.value;
+    if(inputDate!==''){
+        var dateStr=inputDate.split('-');
+        
+        var date={
+            day:Number(dateStr[2]),
+            month:Number(dateStr[1]),
+            year:Number(dateStr[0]),
+        }
+        console.log(date);
+        if(checkPalindromeForAllDateFormats(date)){
+            console.log("yes it is a palindrome")
+        }
+        else{
+            console.log("not a palindrome")
+        }
+        
+    }
+}
+btnShow.addEventListener("click",clickHandler);
+
 function strReverse(str){
     var inputStr=str;
     var requiredStr = inputStr.split('').reverse('').join('');
@@ -115,9 +138,54 @@ function getNextPalindrome(date){
     }
     return[ctr,nextDate];
 }
-var date={
-    day:11,
-    month:02,
-    year:2020,
+function getPreviousDate(date){
+    var day=date.day-1;
+    var month=date.month;
+    var year=date.year;
+    var dateinMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if(month===3){
+        if(isLeapYear(year)){
+            if(day<1){
+                day=29;
+                month=2;
+            }
+        }
+        else{
+            if(day<1){
+                day=28;
+                month--;
+            }
+        }
+    }
+   else{
+       if(day<1){
+           month--;
+           day=dateinMonth[month-1];
+       }
+   }
+   if(month<1){
+       month=12;
+       year--;
+   }
+   return{
+       day:day,
+       month:month,
+       year:year
+   }
+    
 }
-console.log(getNextPalindrome(date));
+function getPreviousPalindrome(date){
+    var ctr=0;
+    var previousDate=getPreviousDate(date);
+    while(1){
+        ctr++;
+        if(checkPalindromeForAllDateFormats(previousDate)){
+            break;
+        }
+        previousDate=getPreviousDate(previousDate);
+    }
+    return[ctr,previousDate];
+}
+
+
+
