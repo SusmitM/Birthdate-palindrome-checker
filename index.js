@@ -8,17 +8,26 @@ function clickHandler(){
     if(inputDate!==''){
         var dateStr=inputDate.split('-');
         
+        
         var date={
             day:Number(dateStr[2]),
             month:Number(dateStr[1]),
             year:Number(dateStr[0]),
         }
-        console.log(date);
         if(checkPalindromeForAllDateFormats(date)){
-            console.log("yes it is a palindrome")
+          output.innerText="Yay! Your birthday is palindrome!!";
         }
-        else{
-            console.log("not a palindrome")
+        if(checkPalindromeForAllDateFormats(date)===false){
+            const[ctr1,nextdate]=getNextPalindrome(date);
+            const[ctr2,prevdate]=getPreviousPalindrome(date);
+            console.log(ctr1,ctr2,prevdate.day,prevdate.month,prevdate.year);
+            if(ctr2>ctr1){
+            output.innerText=`BADLUCK!!! your birthday is not a palindrome. The nearest palindrome date is ${nextdate.day}-${nextdate.month}-${nextdate.year}, you missed by ${ctr1} days.`;
+            }
+            else{
+                output.innerText=`BADLUCK!!! your birthday is not a palindrome. The nearest palindrome date is ${prevdate.day}-${prevdate.month}-${prevdate.year}, you missed by ${ctr2} days.`;
+
+            }
         }
         
     }
@@ -139,39 +148,35 @@ function getNextPalindrome(date){
     return[ctr,nextDate];
 }
 function getPreviousDate(date){
-    var day=date.day-1;
-    var month=date.month;
-    var year=date.year;
-    var dateinMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if(month===3){
-        if(isLeapYear(year)){
-            if(day<1){
-                day=29;
-                month=2;
-            }
-        }
-        else{
-            if(day<1){
-                day=28;
-                month--;
-            }
-        }
+    var day = date.day - 1;
+  var month = date.month;
+  var year = date.year;
+
+  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (day === 0) {
+    month--;
+
+    if (month === 0) {
+      month = 12;
+      day = 31;
+      year--;
+    } else if (month === 2) {
+      if (isLeapYear(year)) {
+        day = 29;
+      } else {
+        day = 28;
+      }
+    } else {
+      day = daysInMonth[month - 1];
     }
-   else{
-       if(day<1){
-           month--;
-           day=dateinMonth[month-1];
-       }
-   }
-   if(month<1){
-       month=12;
-       year--;
-   }
-   return{
-       day:day,
-       month:month,
-       year:year
-   }
+  }
+
+  return {
+    day: day,
+    month: month,
+    year: year,
+  };
     
 }
 function getPreviousPalindrome(date){
