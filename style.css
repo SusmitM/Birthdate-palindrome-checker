@@ -2,27 +2,52 @@ body {
   text-align: center;
   font-family: 'Bebas Neue', cursive;
 }
+.intro{
+  padding: 2rem 0rem 0rem 0rem;
+}
 
 label {
   display: block;
   width: 100%;
-  padding: 3rem 0rem 3rem 0rem;
+  font-size: large;
+  font-weight: 600;
+  padding: 2rem 0rem 0rem 0rem;
 }
 
 #dateinput {
-  padding: 0.75rem 1rem 0.75rem 1rem;
-  margin: 2rem 0rem 2rem 0rem;
   text-align: center;
-  font-weight: bold;
-  border: 0.5px solid black;
+  padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+  margin: 2rem 0rem 2rem 0rem;
+  font-weight: bolder;
+  font-size: large;
+  border-radius: 0.5rem;
+  border: 2px solid #7c3aed;
+}
+
+#btnShow {
+  font-size: larger;
+  font-weight: 500;
+  color: white;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  background-color: #7c3aed;
+  border: transparent;
+  border-radius: 0.5rem;
+
+}
+
+#output {
+  font-size: large;
+  margin: 2rem 0;
+  font-weight: 200;
 }
 
 .fsection {
   position: absolute;
-  width: 90%;
+  width: 100%;
   bottom: -19px;
-  font-size:2.95vh;
+  font-size: 2.95vh;
   font-weight: 400;
+  padding: 0rem 0rem 3rem 0rem;
 
 }
 
