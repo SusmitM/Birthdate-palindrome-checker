@@ -15,16 +15,16 @@ function clickHandler() {
             year: Number(dateStr[0]),
         }
         if (checkPalindromeForAllDateFormats(date)) {
-            output.innerText = "Yay! Your birthday is palindrome!!";
+            output.innerText = "Yay 🥳🥳 Your birthday is palindrome!!";
         }
         if (checkPalindromeForAllDateFormats(date) === false) {
             const [ctr1, nextdate] = getNextPalindrome(date);
             const [ctr2, prevdate] = getPreviousPalindrome(date);
             console.log(ctr1, ctr2, prevdate.day, prevdate.month, prevdate.year);
             if (ctr2 > ctr1) {
-                output.innerText = `BADLUCK!!! your birthday is not a palindrome. The nearest palindrome date is ${nextdate.day}-${nextdate.month}-${nextdate.year}, you missed by ${ctr1} days.`;
+                output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${nextdate.day}-${nextdate.month}-${nextdate.year}, you missed by ${ctr1} days. `;
             } else {
-                output.innerText = `BADLUCK!!! your birthday is not a palindrome. The nearest palindrome date is ${prevdate.day}-${prevdate.month}-${prevdate.year}, you missed by ${ctr2} days.`;
+                output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${prevdate.day}-${prevdate.month}-${prevdate.year}, you missed by ${ctr2} days. `;
 
             }
         }
