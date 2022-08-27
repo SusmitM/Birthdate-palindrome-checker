@@ -4,32 +4,41 @@ const output = document.querySelector("#output");
 
 
 function clickHandler() {
+
     var inputDate = input.value;
-    if (inputDate !== '') {
-        var dateStr = inputDate.split('-');
 
-
-        var date = {
-            day: Number(dateStr[2]),
-            month: Number(dateStr[1]),
-            year: Number(dateStr[0]),
-        }
-        if (checkPalindromeForAllDateFormats(date)) {
-            output.innerText = "Yay 🥳🥳 Your birthday is palindrome!!";
-        }
-        if (checkPalindromeForAllDateFormats(date) === false) {
-            const [ctr1, nextdate] = getNextPalindrome(date);
-            const [ctr2, prevdate] = getPreviousPalindrome(date);
-            console.log(ctr1, ctr2, prevdate.day, prevdate.month, prevdate.year);
-            if (ctr2 > ctr1) {
-                output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${nextdate.day}-${nextdate.month}-${nextdate.year}, you missed by ${ctr1} days. `;
-            } else {
-                output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${prevdate.day}-${prevdate.month}-${prevdate.year}, you missed by ${ctr2} days. `;
-
+    if (inputDate == "") {
+        output.innerText = "Invalid Input"
+    }
+    else{
+        if (inputDate !== '') {
+            var dateStr = inputDate.split('-');
+    
+    
+            var date = {
+                day: Number(dateStr[2]),
+                month: Number(dateStr[1]),
+                year: Number(dateStr[0]),
             }
+            if (checkPalindromeForAllDateFormats(date)) {
+                output.innerText = "Yay 🥳🥳 Your birthday is palindrome!!";
+            }
+            if (checkPalindromeForAllDateFormats(date) === false) {
+                const [ctr1, nextdate] = getNextPalindrome(date);
+                const [ctr2, prevdate] = getPreviousPalindrome(date);
+                if (ctr2 > ctr1) {
+                    output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${nextdate.day}-${nextdate.month}-${nextdate.year}, you missed by ${ctr1} days. `;
+                } else {
+                    output.innerText = `BADLUCK 🥺 🥺 your birthday is not a palindrome. The nearest palindrome date is ${prevdate.day}-${prevdate.month}-${prevdate.year}, you missed by ${ctr2} days. `;
+    
+                }
+            }
+    
         }
 
     }
+
+   
 }
 btnShow.addEventListener("click", clickHandler);
 
