@@ -8,7 +8,7 @@ function clickHandler() {
     var inputDate = input.value;
 
     if (inputDate == "") {
-        output.innerText = "Invalid Input"
+        output.innerText = "Select a Date";
     }
     else{
         if (inputDate !== '') {
